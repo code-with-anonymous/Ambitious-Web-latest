@@ -43,7 +43,7 @@ const Notes = () => {
       const q = query(
         collection(fireStore, "topics"),
         where("class", "==", selectedClass),
-        where("subject", "==", subject.toLowerCase()),
+        where("subject", "==", subject),
         where("contentType", "==", contentType)
       );
 
@@ -61,6 +61,7 @@ const Notes = () => {
     }
     setLoading(false);
   };
+
 
   const handleSubjectClick = (subjectName, index) => {
 
@@ -97,7 +98,7 @@ const Notes = () => {
     <div className="notes-container">
       <main>
         <h2>Welcome to Our Educational Portal</h2>
-        <p className="intro-text">Our goal is to provide high-quality educational resources.</p>
+        <p className="intro-text py-3 fw-bold">Our goal is to provide high-quality educational resources.</p>
 
         <div className="subjects-grid">
           {subjects.map((subjectName, index) => (
