@@ -12,7 +12,8 @@ const subjects = [
 const contentTypes = [
   { label: "📖 Book Lessons", value: "book-lessons" },
   { label: "📝 MCQs", value: "mcqs" },
-  { label: "📜 Past Papers", value: "past-papers" }
+  { label: "📜 Past Papers", value: "past-papers" },
+  { label: "📜 Kamiyab Series", value: "Kamiyab-Series" }
 ];
 
 const Notes = () => {
@@ -38,18 +39,22 @@ const Notes = () => {
   const fetchTopics = async (subject, contentType) => {
     setLoading(true);
     try {
+      console.log("Fetching topics for subject:", subject, "and contentType:", contentType);
       const q = query(
         collection(fireStore, "topics"),
         where("class", "==", selectedClass),
         where("subject", "==", subject.toLowerCase()),
         where("contentType", "==", contentType)
       );
+
+      console.log("Fetching topics with query:", q);
       const snapshot = await getDocs(q);
       const topicData = {};
       snapshot.forEach(doc => {
         const data = doc.data();
         if (data.topic) topicData[data.topic] = data.fileUrls || [];
       });
+      console.log("Fetched topics:", topicData);
       setTopics(topicData);
     } catch (error) {
       console.error("Error fetching topics:", error);

@@ -65,8 +65,8 @@ const AddContent = () => {
     const {
       topic,
       class: selectedClasses,
-      category,
-      subCategory,
+      subject,
+      contentType,
       file,
     } = values;
 
@@ -132,9 +132,9 @@ const AddContent = () => {
 
         class: selectedClasses.join(", "),
 
-        category: category || "",
+        subject: subject || "",
 
-        subCategory: subCategory || "", // Set subCategory as "MCQ Test" if isMCQ is true
+        contentType: contentType || "", // Set contentType as "MCQ Test" if isMCQ is true
 
         description: description || "", // Hide description for MCQ
 
@@ -245,13 +245,13 @@ const AddContent = () => {
             </Select>
           </Form.Item>
 
-          <Form.Item label="Category" name="category">
+          <Form.Item label="subject" name="subject">
             <Input placeholder="Enter category" />
           </Form.Item>
 
-          {/* <Form.Item label="subCategory" name="subCategory">
-            <Input placeholder="Enter subCategory" />
-          </Form.Item> */}
+          <Form.Item label="Content Type" name="contentType">
+            <Input placeholder="Enter contentType" />
+          </Form.Item>
 
           <Form.Item label="Description" name="description">
             <Input.TextArea
